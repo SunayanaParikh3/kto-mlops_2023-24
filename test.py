@@ -1,23 +1,39 @@
 import unittest
 
-"""
-Count names with more than seven letters
-"""
-def names(prenoms):
-    more_than_seven = 0
-    for prenom in prenoms:
-        if len(prenom) > 7:
-            more_than_seven += 1
-            print("Prenom supérieur à 7 : " + prenom)
+def count_names_with_length_above_threshold(names: list[str], length_threshold: int = 7) -> int:
+    """
+    Compte le nombre de noms ayant plus de 'length_threshold' caractères.
+
+    Args:
+    - names: Liste des noms à évaluer.
+    - length_threshold: Seuil de longueur des noms à compter.
+
+    Returns:
+    - Nombre de noms dépassant le seuil de longueur spécifié.
+    """
+    count_above_threshold = 0
+    for name in names:
+        if len(name) > length_threshold:
+            count_above_threshold += 1
+            print(f"Prenom supérieur à {length_threshold} : {name}")
         else:
-            print("Prenom inférieur ou égal à 7 : " + prenom)
-    return more_than_seven
+            print(f"Prenom inférieur ou égal à {length_threshold} : {name}")
+    return count_above_threshold
+
 
 class TestNamesMethod(unittest.TestCase):
-     def test_names(self):
-        prenoms = ["Guillaume", "Gilles", "Juliette", "Antoine", "François", "Cassandre"]
-        more_than_seven = names(prenoms=prenoms)
-        self.assertEqual(more_than_seven, 4)
+    def test_names_with_length_above_threshold(self):
+        # Liste de prénoms à tester
+        names_list = ["Guillaume", "Gilles", "Juliette", "Antoine", "François", "Cassandre"]
+        
+        # Appel de la fonction avec la liste de prénoms
+        count_above_threshold = count_names_with_length_above_threshold(names=names_list)
+        
+        # Valeur attendue pour le nombre de prénoms dépassant le seuil
+        expected_count = 4
+
+        # Vérification que le résultat obtenu correspond à la valeur attendue
+        self.assertEqual(count_above_threshold, expected_count)
 
 if __name__ == '__main__':
     unittest.main()
