@@ -1,4 +1,4 @@
-.idea
+git switch -c votrenom/step05.idea
 *.iml
 **/__pycache__/
 **/mlruns/
